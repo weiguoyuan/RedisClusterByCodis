@@ -1,6 +1,6 @@
-# RedisClusterByCodis
-   1.codis集群搭建
-     1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
+1.codis集群搭建
+
+    1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
       
        1.下载go安装包 golang中国上下载 下载到Downloads下
 
@@ -8,11 +8,11 @@
 
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
          
-         unset i
-         unset -f pathmunge
-         export GOROOT=/usr/local/go
-         export PATH=$GOROOT/bin:$PATH
-         export GOPATH=/data/gopkg
+          unset i
+          unset -f pathmunge
+          export GOROOT=/usr/local/go
+          export PATH=$GOROOT/bin:$PATH
+          export GOPATH=/data/gopkg
 
        4. 然后执行 source /etc/profile 刷新配置文件
 
@@ -20,9 +20,9 @@
 
        6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
 
-     1.2 安装git yum -y install git
+    1.2 安装git yum -y install git
   
-     1.3 配置hosts文件 3个机器都是相同的配置 
+    1.3 配置hosts文件 3个机器都是相同的配置 
      
        cd /etc
        vi hosts
@@ -66,7 +66,7 @@
 
       
 
-     1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
+    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
        1. 官网下载 下载到Downloads下
 
@@ -126,7 +126,7 @@
            ./zkServer.sh stop
            ./zkServer.sh status 查看节点状态有 leader,fellower
  
-     1.5 安装codis 编译 3个机器上都需安装
+    1.5 安装codis 编译 3个机器上都需安装
   
        go get -d github.com/wandoulabs/codis
 
