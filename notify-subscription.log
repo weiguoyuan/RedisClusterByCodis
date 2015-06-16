@@ -1,0 +1,11 @@
+2015-06-16 08:57:20,085 [main] INFO  [com.wandoulabs.jodis.RoundRobinJedisPool] - Add new proxy: weiguoyuan:19000
+ 2015-06-16 08:57:20,628 [main] INFO  [com.wandoulabs.jodis.RoundRobinJedisPool] - Add new proxy: weiguoyuan2:19000
+ 2015-06-16 08:57:20,631 [main] INFO  [com.wandoulabs.jodis.RoundRobinJedisPool] - Add new proxy: hemy:19000
+ 2015-06-16 08:57:20,841 [main] INFO  [Redis] - 执行saveToRedisWithKey方法
+ 2015-06-16 08:57:20,841 [main] INFO  [Redis] - 存入前时间1434416240841
+ 2015-06-16 08:57:21,108 [main] INFO  [Redis] - 存入后时间1434416241108
+ 2015-06-16 08:57:21,108 [main] INFO  [Redis] - 返回的key值199922340
+ 2015-06-16 08:57:21,109 [main] INFO  [Redis] - 执行saveToRedisWithKey方法
+ 2015-06-16 08:57:21,109 [main] INFO  [Redis] - 存入前时间1434416241109
+ 2015-06-16 08:57:21,121 [main] INFO  [Redis] - 存入后时间1434416241121
+ 2015-06-16 08:57:21,121 [main] INFO  [Redis] - 返回的key值199922341
