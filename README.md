@@ -1,9 +1,9 @@
 1. Codis 集群搭建
     
      1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
-       
+  
          1.1.1. 下载go安装包 golang中国上下载 下载到Downloads下
-       
+ 
          1.1.2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
 
          1.1.3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
@@ -65,8 +65,6 @@
        10.64.4.95	weiguoyuan2
        10.64.4.99	hemy
 ```
-
-
      1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
          1.4.1. 官网下载 下载到Downloads下
@@ -141,7 +139,7 @@
 ```
 
 
-**2. Codis 配置
+2. Codis 配置
 
      2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
     
