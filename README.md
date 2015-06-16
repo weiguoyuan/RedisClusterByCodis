@@ -1,21 +1,21 @@
 1. Codis 集群搭建
-
-   1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
-
+    
+    1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
+       
        1.下载go安装包 golang中国上下载 下载到Downloads下
-
+       
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
-
+       
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
-
+    
           unset i
           unset -f pathmunge
           export GOROOT=/usr/local/go
           export PATH=$GOROOT/bin:$PATH
           export GOPATH=/data/gopkg
-
+   
        4. 然后执行 source /etc/profile 刷新配置文件
-
+        
        5. 运行命令 go 测试go是否安装成功
 
        6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
