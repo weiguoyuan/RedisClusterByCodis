@@ -295,17 +295,8 @@
      go build
 
      codis-ha --codis-config=localhost:18087 --productName=test
+
    
-
-
-
-
-
-
-
-
- 
-
-参考：http://navyaijm.blog.51cto.com/4647068/1637688
-
+5. 参考
+        http://navyaijm.blog.51cto.com/4647068/1637688
         https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
