@@ -268,20 +268,20 @@
 
 3 启动3个机器的zookeeper 
   
-   cd /usr/local/zookeeper/bin
-   ./zkServer.sh start
+   `cd /usr/local/zookeeper/bin`
+   `./zkServer.sh start`
 
 
 4 在没有配置add_group.sh的两个机器上(机器2和3)
   
-   cd /data/gopkg/src/github.com/wandoulabs/codis/sample
-   ./start_redis.sh
+   `cd /data/gopkg/src/github.com/wandoulabs/codis/sample`
+   `./start_redis.sh`
 
 
 5 在配置add_group.sh的机器上(机器1) 上
   
-    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
-    ./startall.sh
+    `cd /data/gopkg/src/github.com/wandoulabs/codis/sample`
+    `./startall.sh`
 
 
 6 在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
@@ -289,8 +289,8 @@
 
 7 在机器2和3上分别启动代理
   
-   cd /data/gopkg/src/github.com/wandoulabs/codis/sample
-   ./start_proxy.sh
+   `cd /data/gopkg/src/github.com/wandoulabs/codis/sample`
+   `./start_proxy.sh`
 
 
 8 在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
