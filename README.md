@@ -1,6 +1,6 @@
 #Codis 集群搭建
     
-   1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
+1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
   
     1.1.1. 下载go安装包 golang中国上下载 下载到Downloads下
  
@@ -20,9 +20,9 @@
  
    1.1.6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
 
-    1.2 安装git yum -y install git
+2 安装git yum -y install git
   
-    1.3 配置hosts文件 3个机器都是相同的配置 
+3 配置hosts文件 3个机器都是相同的配置 
    
 ```
    cd /etc
@@ -65,7 +65,7 @@
    10.64.4.95	weiguoyuan2
    10.64.4.99	hemy
 ```
-   1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
+4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
     1.4.1. 官网下载 下载到Downloads下
  
@@ -127,7 +127,7 @@
    ./zkServer.sh stop
    ./zkServer.sh status 查看节点状态有 leader,fellower
 ``` 
-   1.5 安装codis 编译 3个机器上都需安装
+5 安装codis 编译 3个机器上都需安装
    
 ```  
     go get -d github.com/wandoulabs/codis
