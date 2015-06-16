@@ -7,13 +7,15 @@
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
        
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
-```    
+
+```  
           unset i
           unset -f pathmunge
           export GOROOT=/usr/local/go
           export PATH=$GOROOT/bin:$PATH
           export GOPATH=/data/gopkg
-```   
+```  
+
        4. 然后执行 source /etc/profile 刷新配置文件
         
        5. 运行命令 go 测试go是否安装成功
@@ -23,6 +25,7 @@
    1.2 安装git yum -y install git
   
    1.3 配置hosts文件 3个机器都是相同的配置 
+   
 ```
        cd /etc
        vi hosts
@@ -34,6 +37,7 @@
        10.64.4.95  weiguoyuan2
        10.64.4.99  hemy
 ```
+
        还需要配置windows下的hosts文件 否则在windows下的jodis客户端访问codis集群机器找不到主机名对应的ip
 ```
        C:\Windows\System32\drivers\etc 
