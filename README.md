@@ -176,6 +176,50 @@
        tail -n 30 ./log/redis_6382.log
        tail -n 30 ./log/redis_6383.log
 
+    2.2.3 配置 add_group.sh 只需一个机器配置
+    
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi start_redis.sh
+       
+       [will@weiguoyuan sample]$ more add_group.sh 
+       #!/bin/sh
+
+       echo "add group 1 with a master(localhost:6381), Notice: do not use localhost when in produciton"
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 1 10.64.4.57:6380 master
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 1 10.64.4.95:6380 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 1 10.64.4.99:6380 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 2 10.64.4.57:6381 master
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 2 10.64.4.95:6381 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 2 10.64.4.99:6381 slave
+
+       echo "add group 2 with a master(localhost:6382), Notice: do not use localhost when in produciton"
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 3 10.64.4.95:6382 master
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 3 10.64.4.57:6382 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 3 10.64.4.99:6382 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.99:6383 master
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.95:6383 slave
+       ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.57:6383 slave
+       
+    2.2.3 配置 initslot.sh 只需一个机器配置
+    
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi initslot.sh
+       
+       [will@weiguoyuan sample]$ more initslot.sh 
+       #!/bin/sh
+       echo "slots initializing..."
+       ../bin/codis-config -c config.ini slot init -f
+       echo "done"
+
+       echo "set slot ranges to server groups..."
+       ../bin/codis-config -c  config.ini slot range-set 0 255 1 online
+       ../bin/codis-config -c  config.ini slot range-set 256 511 2 online
+       ../bin/codis-config -c  config.ini slot range-set 512 767 3 online
+       ../bin/codis-config -c  config.ini slot range-set 768 1023 4 online
+       echo "done"
+
+
+
 
 
  
