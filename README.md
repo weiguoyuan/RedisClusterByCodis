@@ -1,6 +1,6 @@
 1.codis集群搭建
 
-    1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
+   1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
       
        1.下载go安装包 golang中国上下载 下载到Downloads下
 
