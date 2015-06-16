@@ -18,7 +18,7 @@
        1.1.4. 然后执行 source /etc/profile 刷新配置文件
         
        1.1.5. 运行命令 go 测试go是否安装成功
-
+ 
        1.1.6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
 
    1.2 安装git yum -y install git
@@ -67,10 +67,11 @@
        10.64.4.99	hemy
 ```
 
+
    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
        1.4.1. 官网下载 下载到Downloads下
-
+ 
        1.4.2. tar -xzf zookeeper.**.tar.gz -C /usr/local
 
        1.4.3. cd /usr/local/zookeeper*/conf
@@ -144,7 +145,7 @@
 2. Codis 配置
 
     2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
-
+    
     2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
    
     2.2.1 配置config.ini 3个机器都得配置
@@ -254,38 +255,47 @@
 ```
  
     2.2.7 Codis 集群启动
-        
-       1.启动3个机器
+    
+       2.2.7.1.启动3个机器
 
-       2.关闭3个机器防火墙
+
+       2.2.7.2.关闭3个机器防火墙
           CentOS防火墙分为2中 firewalld 和 iptables
           如果是firewalld systemctl stop firewalld.service
           如果是iptables  systemctl stop iptables.service
 
-       3.启动3个机器的zookeeper 
+
+       2.2.7.3.启动3个机器的zookeeper 
           cd /usr/local/zookeeper/bin
           ./zkServer.sh start
 
-       4.在没有配置add_group.sh的两个机器上(机器2和3) 
+
+       2.2.7.4.在没有配置add_group.sh的两个机器上(机器2和3) 
           cd /data/gopkg/src/github.com/wandoulabs/codis/sample
           ./start_redis.sh
 
-       5.在配置add_group.sh的机器上(机器1) 上
+
+      2.2.7.5.在配置add_group.sh的机器上(机器1) 上
           cd /data/gopkg/src/github.com/wandoulabs/codis/sample
           ./startall.sh
 
-       6.在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
 
-       7.在机器2和3上分别启动代理
+       2.2.7.6.在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
+
+
+       2.2.7.7.在机器2和3上分别启动代理
           cd /data/gopkg/src/github.com/wandoulabs/codis/sample
           ./start_proxy.sh
 
-       8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
 
-       9.可以通过windows上的jodis客户端访问Codis集群了
+       2.2.7.8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
+
+
+       2.2.7.9.可以通过windows上的jodis客户端访问Codis集群了
 
 
 3. 利用Asis2生成 Webservice服务
+
     http://www.cnblogs.com/weixiaole/p/4372319.html
 
 4. codis-ha
