@@ -146,7 +146,7 @@
 
 1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
     
-2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
+2 编写脚本 脚本方式配置
    
  2.1 配置config.ini 3个机器都得配置
 ```
