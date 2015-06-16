@@ -7,7 +7,7 @@
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
 
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
-          
+
           unset i
           unset -f pathmunge
           export GOROOT=/usr/local/go
