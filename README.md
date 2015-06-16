@@ -1,4 +1,4 @@
-1. Codis 集群搭建
+***1. Codis 集群搭建
     
     1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
   
@@ -14,11 +14,11 @@
           export PATH=$GOROOT/bin:$PATH
           export GOPATH=/data/gopkg
 ```  
-       1.1.4. 然后执行 source /etc/profile 刷新配置文件
+  1.1.4. 然后执行 source /etc/profile 刷新配置文件
 
-       1.1.5. 运行命令 go 测试go是否安装成功
+  1.1.5. 运行命令 go 测试go是否安装成功
  
-       1.1.6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
+  1.1.6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
 
    1.2 安装git yum -y install git
   
@@ -69,15 +69,15 @@
 
    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
-       1.4.1. 官网下载 下载到Downloads下
+    1.4.1. 官网下载 下载到Downloads下
  
-       1.4.2. tar -xzf zookeeper.**.tar.gz -C /usr/local
+    1.4.2. tar -xzf zookeeper.**.tar.gz -C /usr/local
 
-       1.4.3. cd /usr/local/zookeeper*/conf
+    1.4.3. cd /usr/local/zookeeper*/conf
 
-       1.4.4. cp zookeeper.cfg zoo.cfg
+    1.4.4. cp zookeeper.cfg zoo.cfg
 
-       1.4.5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
+     1.4.5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
 
 
 ```
@@ -114,9 +114,9 @@
          server.2=10.64.4.95:2888:3888
          server.3=10.64.4.99:2888:3888
 ```
-      1.4.6. 配置zookeeper节点id 
-          先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
-          再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
+  1.4.6. 配置zookeeper节点id 
+    先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
+     再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
 ```
           echo "1" >/tmp/zookeeper/myid #3个机器上分别执行
           echo "2" >/tmp/zookeeper/myid
@@ -141,7 +141,7 @@
 ```
 
 
-2. Codis 配置
+***2. Codis 配置
 
     2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
     
@@ -287,17 +287,17 @@
           ./start_proxy.sh
 
 
-       2.2.7.8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
+    2.2.7.8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
 
 
-       2.2.7.9.可以通过windows上的jodis客户端访问Codis集群了
+    2.2.7.9.可以通过windows上的jodis客户端访问Codis集群了
 
 
-3. 利用Asis2生成 Webservice服务
+***3. 利用Asis2生成 Webservice服务
 
     http://www.cnblogs.com/weixiaole/p/4372319.html
 
-4. codis-ha
+***4. codis-ha
 
     官方文档 https://github.com/ngaut/codis-ha
 
@@ -310,7 +310,7 @@
      codis-ha --codis-config=localhost:18087 --productName=test
 
    
-5. 参考
+***5. 参考
 ```
         http://navyaijm.blog.51cto.com/4647068/1637688
         https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
