@@ -7,7 +7,7 @@
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
 
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
-
+          
           unset i
           unset -f pathmunge
           export GOROOT=/usr/local/go
@@ -26,7 +26,7 @@
 
        cd /etc
        vi hosts
-
+        
        [will@weiguoyuan etc]$ more hosts
        127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
        ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
@@ -37,7 +37,7 @@
        还需要配置windows下的hosts文件 否则在windows下的jodis客户端访问codis集群机器找不到主机名对应的ip
 
        C:\Windows\System32\drivers\etc 
-      
+       
        # Copyright (c) 1993-2009 Microsoft Corp.
        #
        # This is a sample HOSTS file used by Microsoft TCP/IP for Windows.
@@ -55,16 +55,15 @@
        #
        #      102.54.94.97     rhino.acme.com          # source server
        #       38.25.63.10     x.acme.com              # x client host
-
+       
        # localhost name resolution is handled within DNS itself.
        #	127.0.0.1       localhost
        #	::1             localhost
-
+       
        10.64.4.57	weiguoyuan
        10.64.4.95	weiguoyuan2
        10.64.4.99	hemy
 
-      
 
    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
