@@ -7,13 +7,13 @@
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
        
        3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
-    
+```    
           unset i
           unset -f pathmunge
           export GOROOT=/usr/local/go
           export PATH=$GOROOT/bin:$PATH
           export GOPATH=/data/gopkg
-   
+```   
        4. 然后执行 source /etc/profile 刷新配置文件
         
        5. 运行命令 go 测试go是否安装成功
@@ -23,7 +23,7 @@
    1.2 安装git yum -y install git
   
    1.3 配置hosts文件 3个机器都是相同的配置 
-
+```
        cd /etc
        vi hosts
         
@@ -33,9 +33,9 @@
        10.64.4.57  weiguoyuan
        10.64.4.95  weiguoyuan2
        10.64.4.99  hemy
-
+```
        还需要配置windows下的hosts文件 否则在windows下的jodis客户端访问codis集群机器找不到主机名对应的ip
-
+```
        C:\Windows\System32\drivers\etc 
        
        # Copyright (c) 1993-2009 Microsoft Corp.
@@ -63,7 +63,7 @@
        10.64.4.57	weiguoyuan
        10.64.4.95	weiguoyuan2
        10.64.4.99	hemy
-
+```
 
    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
@@ -76,7 +76,7 @@
        4. cp zookeeper.cfg zoo.cfg
 
        5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
-
+```
          [will@weiguoyuan conf]$ more zoo.cfg 
          # The number of milliseconds of each tick
          tickTime=2000
@@ -109,24 +109,24 @@
          server.1=10.64.4.57:2888:3888
          server.2=10.64.4.95:2888:3888
          server.3=10.64.4.99:2888:3888
-
+```
        6. 配置zookeeper节点id 
           先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
           再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
-
+```
           echo "1" >/tmp/zookeeper/myid #3个机器上分别执行
           echo "2" >/tmp/zookeeper/myid
           echo "3" >/tmp/zookeeper/myid
-
+```
        7. 启动zookeeper
-
+```
            cd /usr/local/zookeeper/bin
            ./zkServer.sh start
            ./zkServer.sh stop
            ./zkServer.sh status 查看节点状态有 leader,fellower
- 
+``` 
    1.5 安装codis 编译 3个机器上都需安装
-  
+```  
        go get -d github.com/wandoulabs/codis
 
        cd $GOPATH/src/github.com/wandoulabs/codis
@@ -134,7 +134,7 @@
        ./bootstrap.sh （这步比较慢 失败了可以重试）
 
        make gotest
-
+```
 
 
 2. Codis 配置
@@ -144,7 +144,7 @@
     2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
    
     2.2.1 配置config.ini 3个机器都得配置
-
+```
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi config.ini
 
@@ -155,9 +155,9 @@
        net_timeout=5
        dashboard_addr=weiguoyuan:18087
        coordinator=zookeeper
-
+```
     2.2.2 配置 start_redis.sh 3个机器都要配置
-
+```
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi start_redis.sh
 
@@ -174,9 +174,9 @@
        tail -n 30 ./log/redis_6381.log
        tail -n 30 ./log/redis_6382.log
        tail -n 30 ./log/redis_6383.log
-
+```
     2.2.3 配置 add_group.sh 只需一个机器配置
-    
+```    
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi start_redis.sh
 
@@ -198,9 +198,9 @@
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.99:6383 master
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.95:6383 slave
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.57:6383 slave
-
+```
     2.2.4 配置 initslot.sh 只需一个机器配置
- 
+```
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi initslot.sh
 
@@ -216,9 +216,9 @@
        ../bin/codis-config -c  config.ini slot range-set 512 767 3 online
        ../bin/codis-config -c  config.ini slot range-set 768 1023 4 online
        echo "done"
-       
+```  
     2.2.5 修改 start_proxy.sh 机器1 不用修改另外两个机器修改
-    
+```    
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi start_proxy.sh
 
@@ -236,9 +236,9 @@
        echo "sleep 3s"
        sleep 3
        tail -n 30 ./log/proxy.log
-
+```
     2.2.6 修改 set_proxy_online.sh 机器1 不用修改另外两个机器修改
-    
+```    
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi set_proxy_online.sh
 
@@ -247,7 +247,7 @@
        echo "set proxy_1 online"
        ../bin/codis-config -c config.ini proxy online proxy_1 #修改这里
        echo "done"
-
+```
     2.2.7 Codis 集群启动
         
        1.启动3个机器
