@@ -1,8 +1,7 @@
 # RedisClusterByCodis
 Redis cluster create by codis
 1.codis集群搭建
-  1.1 安装go1.3.1 
-      CentOS 7.0 安装go 1.3.1
+  1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
       
       1.下载go安装包 golang中国上下载 下载到Downloads下
 
@@ -68,17 +67,15 @@ Redis cluster create by codis
 
       
 
-  1.4 安装zookeeper 集群 
+  1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
-       3个机器上每个机器上都安装一个zookeeper
-
-　     1. 官网下载 下载到Downloads下
+       1. 官网下载 下载到Downloads下
 
        2. tar -xzf zookeeper.**.tar.gz -C /usr/local
 
-　     3. cd /usr/local/zookeeper*/conf
+       3. cd /usr/local/zookeeper*/conf
 
-　     4. cp zookeeper.cfg zoo.cfg
+       4. cp zookeeper.cfg zoo.cfg
 
        5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
        
@@ -125,10 +122,10 @@ Redis cluster create by codis
           
        7. 启动zookeeper
        
-          cd /usr/local/zookeeper/bin
-        　./zkServer.sh start
-        　./zkServer.sh stop
-          ./zkServer.sh status 查看节点状态有 leader,fellower
+           cd /usr/local/zookeeper/bin
+           ./zkServer.sh start
+           ./zkServer.sh stop
+           ./zkServer.sh status 查看节点状态有 leader,fellower
  
   1.5 安装codis 编译 3个机器上都需安装
   
