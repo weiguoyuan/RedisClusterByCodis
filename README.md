@@ -140,21 +140,21 @@
 
 2. Codis 配置
 
-   2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
+    2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
 
-   2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
+    2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
    
-   2.2.1 配置config.ini 3个机器都得配置
-    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
-    vi config.ini
+    2.2.1 配置config.ini 3个机器都得配置
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi config.ini
     
-    [will@weiguoyuan sample]$ more config.ini 
-    zk=10.64.4.57:2181,10.64.4.95:2181,10.64.4.99:2181 #zookeeper列表
-    product=test
-    proxy_id=proxy_1 #3个机器上分别是 proxy_1 proxy_2 proxy_3
-    net_timeout=5
-    dashboard_addr=weiguoyuan:18087
-    coordinator=zookeeper
+       [will@weiguoyuan sample]$ more config.ini 
+       zk=10.64.4.57:2181,10.64.4.95:2181,10.64.4.99:2181 #zookeeper列表
+       product=test
+       proxy_id=proxy_1 #3个机器上分别是 proxy_1 proxy_2 proxy_3
+       net_timeout=5
+       dashboard_addr=weiguoyuan:18087
+       coordinator=zookeeper
 
 
  
