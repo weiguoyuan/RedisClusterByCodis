@@ -145,6 +145,7 @@
     2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
    
     2.2.1 配置config.ini 3个机器都得配置
+    
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi config.ini
     
@@ -155,6 +156,26 @@
        net_timeout=5
        dashboard_addr=weiguoyuan:18087
        coordinator=zookeeper
+       
+    2.2.2 配置 start_redis.sh 3个机器都要配置
+    
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi start_redis.sh
+       
+       [will@weiguoyuan sample]$ more start_redis.sh 
+       #!/bin/sh
+       nohup ../bin/codis-server ./redis_conf/6380.conf &> ./log/redis_6380.log &
+       nohup ../bin/codis-server ./redis_conf/6381.conf &> ./log/redis_6381.log &
+       nohup ../bin/codis-server ./redis_conf/6382.conf &> ./log/redis_6382.log &
+       nohup ../bin/codis-server ./redis_conf/6383.conf &> ./log/redis_6383.log &
+       
+       echo "sleep 3s"
+       sleep 3
+       tail -n 30 ./log/redis_6380.log
+       tail -n 30 ./log/redis_6381.log
+       tail -n 30 ./log/redis_6382.log
+       tail -n 30 ./log/redis_6383.log
+
 
 
  
