@@ -2,11 +2,11 @@
     
 1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
   
-    1.1 下载go安装包 golang中国上下载 下载到Downloads下
+   1.1 下载go安装包 golang中国上下载 下载到Downloads下
  
-    1.2 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
+   1.2 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
     
-    1.3 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
+   1.3 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
     
 ```  
    unset i
@@ -255,27 +255,31 @@
 ```
  
 3 Codis 集群启动
-    
- 3.1.启动3个机器
+
+  3.1 启动3个机器
 
 
-  3.2.关闭3个机器防火墙
+  3.2 关闭3个机器防火墙
+  
     CentOS防火墙分为2中 firewalld 和 iptables
     如果是firewalld systemctl stop firewalld.service
     如果是iptables  systemctl stop iptables.service
 
 
-  3.3.启动3个机器的zookeeper 
+  3.3 启动3个机器的zookeeper 
+  
    cd /usr/local/zookeeper/bin
    ./zkServer.sh start
 
 
-  3.4.在没有配置add_group.sh的两个机器上(机器2和3) 
+  3.4.在没有配置add_group.sh的两个机器上(机器2和3)
+  
    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
    ./start_redis.sh
 
 
   3.5.在配置add_group.sh的机器上(机器1) 上
+  
     cd /data/gopkg/src/github.com/wandoulabs/codis/sample
     ./startall.sh
 
@@ -284,6 +288,7 @@
 
 
   3.7.在机器2和3上分别启动代理
+  
    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
    ./start_proxy.sh
 
