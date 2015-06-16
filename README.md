@@ -2,11 +2,11 @@
     
     1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
        
-       1.下载go安装包 golang中国上下载 下载到Downloads下
+       1.1.1. 下载go安装包 golang中国上下载 下载到Downloads下
        
-       2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
+       1.1.2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
        
-       3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
+       1.1.3. 修改 etc/profile 文件在文件后加入 export的几行，在unset下面直接加，不要有空行
 
 ```  
           unset i
@@ -15,12 +15,11 @@
           export PATH=$GOROOT/bin:$PATH
           export GOPATH=/data/gopkg
 ```  
-
-       4. 然后执行 source /etc/profile 刷新配置文件
+       1.1.4. 然后执行 source /etc/profile 刷新配置文件
         
-       5. 运行命令 go 测试go是否安装成功
+       1.1.5. 运行命令 go 测试go是否安装成功
 
-       6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
+       1.1.6. 在usr/local/go/test 下 运行 go run helloworld.go 测试
 
    1.2 安装git yum -y install git
   
@@ -37,7 +36,6 @@
        10.64.4.95  weiguoyuan2
        10.64.4.99  hemy
 ```
-
        还需要配置windows下的hosts文件 否则在windows下的jodis客户端访问codis集群机器找不到主机名对应的ip
 ```
        C:\Windows\System32\drivers\etc 
@@ -71,15 +69,17 @@
 
    1.4 安装zookeeper 集群  3个机器上每个机器上都安装一个zookeeper
 
-       1. 官网下载 下载到Downloads下
+       1.4.1. 官网下载 下载到Downloads下
 
-       2. tar -xzf zookeeper.**.tar.gz -C /usr/local
+       1.4.2. tar -xzf zookeeper.**.tar.gz -C /usr/local
 
-       3. cd /usr/local/zookeeper*/conf
+       1.4.3. cd /usr/local/zookeeper*/conf
 
-       4. cp zookeeper.cfg zoo.cfg
+       1.4.4. cp zookeeper.cfg zoo.cfg
 
-       5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
+       1.4.5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
+
+
 ```
          [will@weiguoyuan conf]$ more zoo.cfg 
          # The number of milliseconds of each tick
@@ -114,7 +114,7 @@
          server.2=10.64.4.95:2888:3888
          server.3=10.64.4.99:2888:3888
 ```
-       6. 配置zookeeper节点id 
+      1.4.6. 配置zookeeper节点id 
           先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
           再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
 ```
@@ -122,7 +122,7 @@
           echo "2" >/tmp/zookeeper/myid
           echo "3" >/tmp/zookeeper/myid
 ```
-       7. 启动zookeeper
+      1.4.7. 启动zookeeper
 ```
            cd /usr/local/zookeeper/bin
            ./zkServer.sh start
@@ -252,6 +252,7 @@
        ../bin/codis-config -c config.ini proxy online proxy_1 #修改这里
        echo "done"
 ```
+ 
     2.2.7 Codis 集群启动
         
        1.启动3个机器
@@ -301,5 +302,7 @@
 
    
 5. 参考
+```
         http://navyaijm.blog.51cto.com/4647068/1637688
         https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
+```
