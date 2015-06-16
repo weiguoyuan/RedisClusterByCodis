@@ -280,8 +280,8 @@
 
 5 在配置add_group.sh的机器上(机器1) 上
   
-    `cd /data/gopkg/src/github.com/wandoulabs/codis/sample`
-    `./startall.sh`
+   `cd /data/gopkg/src/github.com/wandoulabs/codis/sample`
+   `./startall.sh`
 
 
 6 在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
