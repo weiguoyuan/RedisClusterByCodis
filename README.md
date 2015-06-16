@@ -1,4 +1,4 @@
-***1. Codis 集群搭建
+**1. Codis 集群搭建
     
     1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
   
@@ -141,7 +141,7 @@
 ```
 
 
-***2. Codis 配置
+**2. Codis 配置
 
     2.1 官方文档 命令方式配置 https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
     
@@ -293,11 +293,11 @@
     2.2.7.9.可以通过windows上的jodis客户端访问Codis集群了
 
 
-***3. 利用Asis2生成 Webservice服务
+**3. 利用Asis2生成 Webservice服务
 
     http://www.cnblogs.com/weixiaole/p/4372319.html
 
-***4. codis-ha
+**4. codis-ha
 
     官方文档 https://github.com/ngaut/codis-ha
 
@@ -310,7 +310,7 @@
      codis-ha --codis-config=localhost:18087 --productName=test
 
    
-***5. 参考
+**5. 参考
 ```
         http://navyaijm.blog.51cto.com/4647068/1637688
         https://github.com/wandoulabs/codis/blob/master/doc/tutorial_zh.md
