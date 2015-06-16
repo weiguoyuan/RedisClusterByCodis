@@ -1,7 +1,7 @@
 1. Codis 集群搭建
 
    1.1 安装go1.3.1 CentOS 7.0 安装go 1.3.1
-      
+
        1.下载go安装包 golang中国上下载 下载到Downloads下
 
        2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
@@ -23,19 +23,19 @@
    1.2 安装git yum -y install git
   
    1.3 配置hosts文件 3个机器都是相同的配置 
-     
+
        cd /etc
        vi hosts
-      
+
        [will@weiguoyuan etc]$ more hosts
        127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
        ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
        10.64.4.57  weiguoyuan
        10.64.4.95  weiguoyuan2
        10.64.4.99  hemy
-    
+
        还需要配置windows下的hosts文件 否则在windows下的jodis客户端访问codis集群机器找不到主机名对应的ip
-      
+
        C:\Windows\System32\drivers\etc 
       
        # Copyright (c) 1993-2009 Microsoft Corp.
@@ -77,7 +77,7 @@
        4. cp zookeeper.cfg zoo.cfg
 
        5. vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
-       
+
          [will@weiguoyuan conf]$ more zoo.cfg 
          # The number of milliseconds of each tick
          tickTime=2000
@@ -114,13 +114,13 @@
        6. 配置zookeeper节点id 
           先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
           再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
-          
+
           echo "1" >/tmp/zookeeper/myid #3个机器上分别执行
           echo "2" >/tmp/zookeeper/myid
           echo "3" >/tmp/zookeeper/myid
           
        7. 启动zookeeper
-       
+
            cd /usr/local/zookeeper/bin
            ./zkServer.sh start
            ./zkServer.sh stop
@@ -145,10 +145,10 @@
     2.2 编写脚本 脚本方式配置 /data/gopkg/src/github.com/wandoulabs/codis/sample start_redis.sh add_group.sh 
    
     2.2.1 配置config.ini 3个机器都得配置
-    
+
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi config.ini
-    
+
        [will@weiguoyuan sample]$ more config.ini 
        zk=10.64.4.57:2181,10.64.4.95:2181,10.64.4.99:2181 #zookeeper列表
        product=test
@@ -156,19 +156,19 @@
        net_timeout=5
        dashboard_addr=weiguoyuan:18087
        coordinator=zookeeper
-       
+
     2.2.2 配置 start_redis.sh 3个机器都要配置
-    
+
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi start_redis.sh
-       
+
        [will@weiguoyuan sample]$ more start_redis.sh 
        #!/bin/sh
        nohup ../bin/codis-server ./redis_conf/6380.conf &> ./log/redis_6380.log &
        nohup ../bin/codis-server ./redis_conf/6381.conf &> ./log/redis_6381.log &
        nohup ../bin/codis-server ./redis_conf/6382.conf &> ./log/redis_6382.log &
        nohup ../bin/codis-server ./redis_conf/6383.conf &> ./log/redis_6383.log &
-       
+
        echo "sleep 3s"
        sleep 3
        tail -n 30 ./log/redis_6380.log
@@ -180,7 +180,7 @@
     
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi start_redis.sh
-       
+
        [will@weiguoyuan sample]$ more add_group.sh 
        #!/bin/sh
 
@@ -199,12 +199,12 @@
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.99:6383 master
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.95:6383 slave
        ../bin/codis-config -c config.ini -L ./log/cconfig.log server add 4 10.64.4.57:6383 slave
-       
-    2.2.3 配置 initslot.sh 只需一个机器配置
-    
+
+    2.2.4 配置 initslot.sh 只需一个机器配置
+ 
        cd /data/gopkg/src/github.com/wandoulabs/codis/sample
        vi initslot.sh
-       
+
        [will@weiguoyuan sample]$ more initslot.sh 
        #!/bin/sh
        echo "slots initializing..."
@@ -217,6 +217,88 @@
        ../bin/codis-config -c  config.ini slot range-set 512 767 3 online
        ../bin/codis-config -c  config.ini slot range-set 768 1023 4 online
        echo "done"
+       
+    2.2.5 修改 start_proxy.sh 机器1 不用修改另外两个机器修改
+    
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi start_proxy.sh
+
+       [will@weiguoyuan sample]$ more start_proxy.sh 
+       #!/bin/sh
+       echo "shut down proxy_1..."
+       ../bin/codis-config -c config.ini proxy offline proxy_1 //修改这里
+       echo "done"
+
+       echo "start new proxy..."
+       nohup ../bin/codis-proxy --log-level info -c config.ini -L ./log/proxy.log  --cpu=8 --addr=0.0.0.0:190
+       00 --http-addr=0.0.0.0:11000 &
+       echo "done"
+
+       echo "sleep 3s"
+       sleep 3
+       tail -n 30 ./log/proxy.log
+
+    2.2.6 修改 set_proxy_online.sh 机器1 不用修改另外两个机器修改
+    
+       cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+       vi set_proxy_online.sh
+
+       [will@weiguoyuan sample]$ more set_proxy_online.sh 
+       #!/bin/sh
+       echo "set proxy_1 online"
+       ../bin/codis-config -c config.ini proxy online proxy_1 #修改这里
+       echo "done"
+
+    2.2.7 Codis 集群启动
+        
+       1.启动3个机器
+
+       2.关闭3个机器防火墙
+          CentOS防火墙分为2中 firewalld 和 iptables
+          如果是firewalld systemctl stop firewalld.service
+          如果是iptables  systemctl stop iptables.service
+
+       3.启动3个机器的zookeeper 
+          cd /usr/local/zookeeper/bin
+          ./zkServer.sh start
+
+       4.在没有配置add_group.sh的两个机器上(机器2和3) 
+          cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+          ./start_redis.sh
+
+       5.在配置add_group.sh的机器上(机器1) 上
+          cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+          ./startall.sh
+
+       6.在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
+
+       7.在机器2和3上分别启动代理
+          cd /data/gopkg/src/github.com/wandoulabs/codis/sample
+          ./start_proxy.sh
+
+       8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
+
+       9.可以通过windows上的jodis客户端访问Codis集群了
+
+
+3. 利用Asis2生成 Webservice服务
+    http://www.cnblogs.com/weixiaole/p/4372319.html
+
+4. codis-ha
+
+    官方文档 https://github.com/ngaut/codis-ha
+
+    go get github.com/ngaut/codis-ha
+
+    cd codis-ha
+
+     go build
+
+     codis-ha --codis-config=localhost:18087 --productName=test
+   
+
+
+
 
 
 
