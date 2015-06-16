@@ -254,49 +254,49 @@
   echo "done"
 ```
  
-3 Codis 集群启动
+#Codis 集群启动
 
-  3.1 启动3个机器
+1 启动3个机器
 
 
-  3.2 关闭3个机器防火墙
+2 关闭3个机器防火墙
   
     CentOS防火墙分为2中 firewalld 和 iptables
     如果是firewalld systemctl stop firewalld.service
     如果是iptables  systemctl stop iptables.service
 
 
-  3.3 启动3个机器的zookeeper 
+3 启动3个机器的zookeeper 
   
    cd /usr/local/zookeeper/bin
    ./zkServer.sh start
 
 
-  3.4.在没有配置add_group.sh的两个机器上(机器2和3)
+4 在没有配置add_group.sh的两个机器上(机器2和3)
   
    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
    ./start_redis.sh
 
 
-  3.5.在配置add_group.sh的机器上(机器1) 上
+5 在配置add_group.sh的机器上(机器1) 上
   
     cd /data/gopkg/src/github.com/wandoulabs/codis/sample
     ./startall.sh
 
 
-  3.6.在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
+6 在机器1上打开火狐浏览器 打开网址 http://localhost:18087/admin 可以看到节点 代理信息
 
 
-  3.7.在机器2和3上分别启动代理
+7 在机器2和3上分别启动代理
   
    cd /data/gopkg/src/github.com/wandoulabs/codis/sample
    ./start_proxy.sh
 
 
-  3.8.在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
+8 在机器1上浏览器http://localhost:18087/admin的代理信息中 设置proxy_2 proxy_3 online
 
 
-  3.9.可以通过windows上的jodis客户端访问Codis集群了
+9 可以通过windows上的jodis客户端访问Codis集群了
 
 
 #利用Asis2生成 Webservice服务
