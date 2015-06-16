@@ -3,6 +3,7 @@ Redis cluster create by codis
 1.codis集群搭建
   1.1 安装go1.3.1 
       CentOS 7.0 安装go 1.3.1
+      
       1.下载go安装包 golang中国上下载 下载到Downloads下
 
       2. 解压 tar -zxf go1.3.1.linux-amd64.tar.gz -C /usr/local/
