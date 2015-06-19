@@ -116,7 +116,7 @@
 ```
    4.6 配置zookeeper节点id 
    
-    先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
+    先启动3个机器的zookeeper zookeeper会自动生成/data/zookeeper文件夹
     再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
 ```
     echo "1" >/data/zookeeper/myid #3个机器上分别执行
