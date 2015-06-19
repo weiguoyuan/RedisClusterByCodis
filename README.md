@@ -77,6 +77,7 @@
   4.4 cp zookeeper.cfg zoo.cfg
 
   4.5 vi zoo.cfg（三个zookeeper的配置文件相同）　在尾部加上节点信息 （节点之前通信）
+    将dataDir=/tmp/zookeeper 修改为dataDir=/data/zookeeper 因为tmp目录在机器重启后会清空，所有权限的用户都可以修改
 
 
 ```
@@ -118,9 +119,9 @@
     先启动3个机器的zookeeper zookeeper会自动生成/tmp/zookeeper文件夹
     再设置节点的myid myid对应的zoo.cfg的server.ID比如192.168.253.128机器上的myid文件内容为1（3个机器分别生成123
 ```
-    echo "1" >/tmp/zookeeper/myid #3个机器上分别执行
-    echo "2" >/tmp/zookeeper/myid
-    echo "3" >/tmp/zookeeper/myid
+    echo "1" >/data/zookeeper/myid #3个机器上分别执行
+    echo "2" >/data/zookeeper/myid
+    echo "3" >/data/zookeeper/myid
 ```
    4.7 启动zookeeper
 ```
