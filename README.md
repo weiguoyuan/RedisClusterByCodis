@@ -303,6 +303,9 @@
 #利用Asis2生成 Webservice服务
 
     http://www.cnblogs.com/weixiaole/p/4372319.html
+    
+#数据迁移
+    solt(solt中的数据)一块迁到新的grop上去 这个过程可以慢慢的进行
 
 #codis-ha
 
