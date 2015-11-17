@@ -93,7 +93,7 @@
   # the directory where the snapshot is stored.
   # do not use /tmp for storage, /tmp here is just 
   # example sakes.
-  dataDir=/tmp/zookeeper
+  dataDir=/data/zookeeper
   # the port at which the clients will connect
   clientPort=2181
   # the maximum number of client connections.
